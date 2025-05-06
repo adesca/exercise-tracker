@@ -1,12 +1,14 @@
-import {useExerciseStore} from "./store.ts";
 import { useState} from "react";
 import {Button} from "@/components/ui/button.tsx";
 import {Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow} from "@/components/ui/table.tsx";
 import {Input} from "@/components/ui/input.tsx";
+import {useExerciseReducer} from "@/exerciseReducer.ts";
 
 
-export function ExerciseTracker() {
-    const {exerciseSets, updateWeight, removeSet, addSet} = useExerciseStore();
+
+export function ExerciseTracker(props: {exerciseIndex: number, exerciseName: string}) {
+    // const {exerciseSets, updateWeight, removeSet, addSet} = useExerciseStore();
+    const {exerciseSets, updateWeight, removeSet, addSet} = useExerciseReducer(props.exerciseIndex)
     const [newRepValue, setNewRepValue] = useState<number>(12);
     const [newWeightValue, setNewWeightValue] = useState<number>(25);
 
@@ -50,15 +52,6 @@ export function ExerciseTracker() {
             </TableFooter>
         </Table>
 
-        {/*<div className="text-3xl font-bold underline">*/}
-        {/*    Hello world!*/}
-        {/*</div>*/}
-
-        <div className={"grid w-full max-w-sm items-center gap-1.5"}>
-            <label htmlFor={"exercise-name"}>Exercise name:</label>
-            <Input id={"exercise-name"} className={"border rounded"} placeholder={"Exercise name"}/>
-        </div>
-
-
     </div>
 }
+
