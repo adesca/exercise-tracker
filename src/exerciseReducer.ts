@@ -1,10 +1,11 @@
 import {useReducer} from "react";
 
 interface ExerciseState {
-    exerciseSets: { setCount: number, weight: number }[]
+    exerciseSets: { repsCount: number, weight: number }[]
     addSet: (setCount: number, weight: number) => void
     removeSet: (setIdx: number) => void
     updateWeight: (setIdx: number, newWeight: number) => void
+    updateSetReps: (setIdx: number, newReps: number) => void
 }
 
 export function useExerciseReducer(exerciseIndex: number): ExerciseState {
@@ -16,7 +17,8 @@ export function useExerciseReducer(exerciseIndex: number): ExerciseState {
         exerciseSets,
         addSet(setCount: number, weight: number): void { dispatch(({type: 'addSet', payload: {setCount, weight}}))},
         removeSet(setIdx: number): void { dispatch({type: 'removeSet', payload: {setIdx}})},
-        updateWeight(setIdx, newWeight){ dispatch({type: 'updateWeight', payload: {setIdx, newWeight}})}
+        updateWeight(setIdx, newWeight){ dispatch({type: 'updateWeight', payload: {setIdx, newWeight}})},
+        updateSetReps(setIdx, newReps) {dispatch({type: 'updateReps', payload: {setIdx, newReps}})}
     }
 }
 
@@ -29,11 +31,12 @@ function getInitialExerciseState(exerciseIndex: number) {
     }
 }
 
-type Action = { type: 'addSet', payload: {setCount: number, weight: number}}
+type Action = { type: 'addSet', payload: {repsCount: number, weight: number}}
     | {type: 'removeSet', payload: {setIdx: number}}
     | {type: 'updateWeight', payload: {setIdx: number, newWeight: number}}
+    | {type: 'updateReps', payload: {setIdx: number, newReps: number}}
 
-function reducer(state: Array<{ setCount: number, weight: number }>, action: Action) {
+function reducer(state: Array<{ repsCount: number, weight: number }>, action: Action) {
     switch(action.type) {
         case "addSet":
             return state.concat(action.payload)
@@ -41,6 +44,9 @@ function reducer(state: Array<{ setCount: number, weight: number }>, action: Act
             return state.toSpliced(action.payload.setIdx, 1)
         case "updateWeight":
             state[action.payload.setIdx].weight = action.payload.newWeight
+            return state;
+        case "updateReps":
+            state[action.payload.setIdx].repsCount = action.payload.newReps
             return state;
     }
 }
