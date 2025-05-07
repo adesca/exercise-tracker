@@ -15,7 +15,7 @@ export function useExerciseReducer(exerciseIndex: number): ExerciseState {
 
     return {
         exerciseSets,
-        addSet(setCount: number, weight: number): void { dispatch(({type: 'addSet', payload: {setCount, weight}}))},
+        addSet(repsCount: number, weight: number): void { dispatch(({type: 'addSet', payload: {repsCount, weight}}))},
         removeSet(setIdx: number): void { dispatch({type: 'removeSet', payload: {setIdx}})},
         updateWeight(setIdx, newWeight){ dispatch({type: 'updateWeight', payload: {setIdx, newWeight}})},
         updateSetReps(setIdx, newReps) {dispatch({type: 'updateReps', payload: {setIdx, newReps}})}

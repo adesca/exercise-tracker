@@ -3,13 +3,12 @@ import {Button} from "@/components/ui/button.tsx";
 import {Table, TableBody, TableCell, TableRow} from "@/components/ui/table.tsx";
 import {Input} from "@/components/ui/input.tsx";
 import {useExerciseReducer} from "@/exerciseReducer.ts";
-import {Laugh, Meh} from "lucide-react";
+import {Frown, Laugh, Meh} from "lucide-react";
 import {RadioGroup, RadioGroupItem} from "./components/ui/radio-group";
 import {Label} from "@/components/ui/label.tsx";
 
 
 export function ExerciseTracker(props: { exerciseIndex: number, exerciseName: string }) {
-    // const {exerciseSets, updateWeight, removeSet, addSet} = useExerciseStore();
     const {exerciseSets, updateWeight, removeSet, addSet, updateSetReps} = useExerciseReducer(props.exerciseIndex)
     const [newRepValue, setNewRepValue] = useState<number | undefined>(undefined);
     const [newWeightValue, setNewWeightValue] = useState<number | undefined>(undefined);
@@ -31,7 +30,7 @@ export function ExerciseTracker(props: { exerciseIndex: number, exerciseName: st
 
                 <div className={"flex items-center space-x-2"}>
                     <RadioGroupItem value={"hard"} id={"hard"}/>
-                    <Label htmlFor={"hard"}><Meh color={"#F43378"}/> Hard</Label>
+                    <Label htmlFor={"hard"}><Frown color={"#F43378"}/> Hard</Label>
                 </div>
             </RadioGroup>
         </div>
