@@ -29,10 +29,10 @@ export function WorkoutByExercise() {
 
     return (
         <>
-            <Accordion type={'single'} collapsible>
+            <Accordion className={"pb-3"} type={'single'} collapsible>
                 {exercises.map((exerciseName, idx) =>
                     (<AccordionItem value={`${idx}`} key={idx}>
-                        <AccordionTrigger>
+                        <AccordionTrigger className={"data-[state=open]:bg-warm data-[state=closed]:bg-primary-no-saturate px-2"}>
                             <Input className={"border rounded"} placeholder={"Exercise name"} value={exerciseName}
                                    onChange={e =>  updateExerciseName(idx, e.currentTarget.value)}/>
                         </AccordionTrigger>
@@ -42,7 +42,7 @@ export function WorkoutByExercise() {
                     </AccordionItem>))}
             </Accordion>
 
-            <Button onClick={() => setExercises(e => [...e, ""])}>Add exercise</Button>
+            <Button className={"bg-secondary"} onClick={() => setExercises(e => [...e, ""])}>Add exercise</Button>
             <Button onClick={() => navigate('superset')}>Convert to supersets</Button>
         </>
     )

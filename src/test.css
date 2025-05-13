@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+:root {
+    --main: #219EBC;
+    --secondary: hsl(from #FFB703 0 50 50);
+    --secondary-2: #8ECAE6;
+    --primary-no-saturate: hsl(from var(--main) 0 -30 50);
+    --main-analogue: hsl(from var(--main) -60 50 50);
+    --cool: #023047;
+    --cool2: hsl(from var(--cool) 180);
+    --cool-complement-1: rgb(from red 200 g b);
+    --cool-complement-2: red;
+    --warm: #E76F51;
+    --white: #F1F6F9;
+    --black: #000000;
+    --grey: #808080;
+
+    --light-cool: hsl(197.33, 37.19%, 63.73%);
+    /*--dark-grey: color-mix(in oklab, var(--black), var(--grey) 20%);*/
+    /*--background: color-mix(in oklab, var(--cool), var(--grey) 95%);*/
+    --background: var(--cool);
+    /*--light-main: color-mix(in oklab, var(--main), var(--white) 90%);*/
+    /*--dark-main: color-mix(in oklab, var(--main), var(--black) 25%);*/
+
+    /*color: var(--white);*/
+}
+
+@theme adeolu {
+    --color-primary-no-saturate: var(--primary-no-saturate);
+    --color-primary: var(--main);
+    --color-secondary: var(--secondary);
+    --color-secondary-2: var(--secondary-2);
+    --color-analogue: var(--main-analogue);
+    --color-cool: var(--cool);
+    --color-warm: var(--warm);
+    --color-white: var(--white);
+    --color-light-cool: var(--light-cool);
+    --color-cool-test: var(--cool2);
+    /*--color-warm: var(--cool);*/
+    /*--color-light: var(--light-main);*/
+    /*--color-dark: var(--dark-main);*/
+}
+
+@layer base2 {
+    * {
+        @apply border-white outline-warm/50;
+    }
+    body {
+        @apply bg-cool text-black;
+    }
+}
